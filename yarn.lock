@@ -135,9 +135,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ti-fp-ts-utils@workspace:.":
+"ti-fptsu@workspace:.":
   version: 0.0.0-use.local
-  resolution: "ti-fp-ts-utils@workspace:."
+  resolution: "ti-fptsu@workspace:."
   dependencies:
     "@types/node": "npm:^20.11.30"
     fp-ts: "npm:^2.16.5"
