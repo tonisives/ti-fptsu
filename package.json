@@ -1,0 +1,21 @@
+{
+  "name": "ti-fptsu",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "fp-ts": "^2.16.5",
+    "logging-ts": "^0.3.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  },
+  "peerDependencies": {
+    "fp-ts": "*",
+    "logging-ts": "*"
+  }
+}
