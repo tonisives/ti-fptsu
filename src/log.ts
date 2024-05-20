@@ -22,4 +22,7 @@ let withLoggerColour =
   ): (<E>(ma: TE.TaskEither<E, A>) => TE.TaskEither<E, A>) =>
     TE.chainFirst((a) => TE.fromIO(logger(getChalk(color)(message(a)))))
 
-export let logC = (color: Color) => withLoggerColour(C.info, color)
+export let lgc =
+  <A, E>(color: Color, f: (a: A) => string) =>
+  (ma: TE.TaskEither<E, A>) =>
+    withLoggerColour(C.info, color)(f)(ma)
