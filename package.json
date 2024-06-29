@@ -2,15 +2,15 @@
   "name": "ti-fptsu",
   "version": "0.0.0",
   "exports": {
-    "log": {
+    "./log": {
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
     },
-    "batch": {
+    "./batch": {
       "import": "./dist/batch.js",
       "types": "./dist/batch.d.ts"
     },
-    "lib": {
+    "./lib": {
       "import": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
     }
