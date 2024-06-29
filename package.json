@@ -1,8 +1,20 @@
 {
   "name": "ti-fptsu",
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "exports": {
+    "log": {
+      "import": "./dist/log.js",
+      "types": "./dist/log.d.ts"
+    },
+    "batch": {
+      "import": "./dist/batch.js",
+      "types": "./dist/batch.d.ts"
+    },
+    "lib": {
+      "import": "./dist/lib.js",
+      "types": "./dist/lib.d.ts"
+    }
+  },
   "type": "module",
   "scripts": {
     "build": "tsc",
