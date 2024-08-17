@@ -3,7 +3,7 @@ different fp-ts utils
 ## Installation
 
 ```
-yarn add fp-ts logging-ts ti-fptsu@tonisives/ti-fptsu
+yarn add fp-ts logging-ts ti-fptsu@tonisives/ti-fptsu chalk
 ```
 
 ## Usage
@@ -15,6 +15,7 @@ await pipe(
     TE.Do,
     TE.bind("input", () => pipe(validateInput(event), TE.fromEither)),
     log(() => "checking conditions"),
+    lgc("yellow", () => "yellow"),
     TE.bind("pre", () => sequenceT(TE.ApplicativePar)(
     ...
 
