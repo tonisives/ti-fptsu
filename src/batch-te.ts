@@ -22,7 +22,7 @@ export let batchWithLimit =
       A.map(A.sequence(TE.ApplicativePar)),
       A.sequence(TE.ApplicativeSeq),
       TE.map(A.flatten),
-    )
+    ) as TE.TaskEither<E, Array<A>>
 
 /**
  * Batch with delay for each item
@@ -43,4 +43,4 @@ export let batchWithDelay =
       tasks,
       A.mapWithIndex((i, task) => T.delay(delay * i)(task)),
       A.sequence(TE.ApplicativePar),
-    )
+    ) as TE.TaskEither<E, Array<A>>
