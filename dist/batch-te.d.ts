@@ -4,8 +4,8 @@ import * as TE from "fp-ts/lib/TaskEither.js";
  *
  * @example
  * await pipe(
- *   batchTasks<ChecklistItemBase | Error>(5)(
- *       getStoreJobs(results, existingCl, stored)
+ *   batchTasks<Error, Result>(5)(
+ *       getStoreJobs() as TE.TaskEither<Error, Result>[]
  *   )
  * )()
  */
@@ -14,15 +14,8 @@ export declare let batchWithLimit: <E, A>(limit: number) => (tasks: Array<TE.Tas
  * Batch with delay for each item
  *
  * @example
- * let getStoreJob = async (oldUser: Record<string, any>) => {
- *   oldUser.pk = newPk
- *   return await dbClient.send(
- *     new PutItemCommand({
- *       TableName: "ah_user_1",
- *       Item: oldUser,
- *     }),
- *   )
- * }
+ * let getStoreJob = async (oldUser: Record<string, any>) =>
+ *   TE.of(...) as TE.TaskEither<Error, Result>
  *
  * let runJobs = async (oldUsers: Record<string, any>[]) => {
  *   let jobs = oldUsers.map((it) => () => getStoreJob(it))
