@@ -10,6 +10,10 @@
       "import": "./dist/batch.js",
       "types": "./dist/batch.d.ts"
     },
+    "./batch-te": {
+      "import": "./dist/batch-te.js",
+      "types": "./dist/batch-te.d.ts"
+    },
     "./lib": {
       "import": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
