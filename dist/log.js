@@ -21,4 +21,33 @@ let withLoggerColour = (logger, color) => (message) => TE.chainFirst((a) => TE.f
  *
  */
 export let lgc = (color, f) => (ma) => withLoggerColour(C.info, color)(f)(ma);
+/**
+ *
+ * Logs a yellow log between TE functions
+ *
+ * @param progress optional callback about the progress. run automatically
+ */
+export let lgy = (message, progress) => (ma) => {
+    progress?.();
+    if (typeof message === "function") {
+        return lgc("yellow", message)(ma);
+    }
+    else {
+        return lgc("yellow", () => message)(ma);
+    }
+};
+/**
+ * Logs a yellow log in the first pipe function call.
+ *
+ * Call this as the first function in a pipe to log that flow is starting.
+ */
+export let lgyf = (message, progress) => {
+    progress?.();
+    if (typeof message === "function") {
+        console.log(chalk.yellow(message()));
+    }
+    else {
+        console.log(chalk.yellow(message));
+    }
+};
 //# sourceMappingURL=log.js.map
