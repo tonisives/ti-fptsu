@@ -17,6 +17,10 @@
     "./lib": {
       "import": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
+    },
+    "./validate": {
+      "import": "./dist/validate.js",
+      "types": "./dist/validate.d.ts"
     }
   },
   "type": "module",
