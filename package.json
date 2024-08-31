@@ -18,7 +18,7 @@
       "import": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
     },
-    "./validate": {
+    "./apply/either-concat-string": {
       "import": "./dist/validate.js",
       "types": "./dist/validate.d.ts"
     }
