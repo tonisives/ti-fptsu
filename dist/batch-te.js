@@ -14,16 +14,25 @@ import { T } from "./lib.js";
  */
 export let batchWithLimit = (limit) => (tasks) => pipe(tasks, A.chunksOf(limit), A.map(A.sequence(TE.ApplicativePar)), A.sequence(TE.ApplicativeSeq), TE.map(A.flatten));
 /**
- * Batch with delay for each item
+ * Batch an array of tasks with a delay between each task.
  *
  * @example
  * let getStoreJob = async (oldUser: Record<string, any>) =>
  *   TE.of(...) as TE.TaskEither<Error, Result>
  *
+ *  let getPipeJob = (startTimes: number[]) =>
+ *   pipe(
+ *     TE.of(1),
+ *     // note we need to call logging inside the TE for the delayed logging
+ *     TE.map(() => console.log("starting")),
+ *     TE.map((it) => it),
+ *   )
+ *
  * let runJobs = async (oldUsers: Record<string, any>[]) => {
  *   let jobs = oldUsers.map((it) => () => getStoreJob(it))
  *   await pipe(batchWithDelay(30)(jobs))()
  * }
+ *
  */
 export let batchWithDelay = (delay) => (tasks) => pipe(tasks, A.mapWithIndex((i, task) => T.delay(delay * i)(task)), A.sequence(TE.ApplicativePar));
 //# sourceMappingURL=batch-te.js.map
