@@ -48,10 +48,6 @@ it("delays for fun ref", async () => {
   expect(resultTimes[2] - resultTimes[0]).toBeGreaterThan(delay * 0.9)
 })
 
-let getJob = (startTimes: number[]) => async () => {
-  startTimes.push(Date.now())
-  return E.of(1)
-}
 // if we call the flow, then it starts running the functions
 let getPipeJob = (startTimes: number[]) =>
   pipe(
