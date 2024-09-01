@@ -28,7 +28,7 @@ export let batchWithLimit =
  * Batch with delay for each item
  *
  * @example
- * let getStoreJob = async (oldUser: Record<string, any>) => 
+ * let getStoreJob = async (oldUser: Record<string, any>) =>
  *   TE.of(...) as TE.TaskEither<Error, Result>
  *
  * let runJobs = async (oldUsers: Record<string, any>[]) => {

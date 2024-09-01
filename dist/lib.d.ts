@@ -5,3 +5,4 @@ export * as T from "fp-ts/lib/Task.js";
 export * as A from "fp-ts/lib/Array.js";
 import * as fun from "fp-ts/lib/function.js";
 export declare let pipe: typeof fun.pipe;
+export declare let flow: typeof fun.flow;

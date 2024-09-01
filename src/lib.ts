@@ -8,3 +8,4 @@ export * as A from "fp-ts/lib/Array.js"
 
 import * as fun from "fp-ts/lib/function.js"
 export let pipe = fun.pipe
+export let flow = fun.flow
