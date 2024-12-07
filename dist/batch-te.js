@@ -17,7 +17,7 @@ export let batchWithLimit = (limit) => (tasks) => pipe(tasks, A.chunksOf(limit),
  * Batch an array of tasks with a delay between each task.
  *
  * @example
- * let getStoreJob = async (oldUser: Record<string, any>) =>
+ * let getJob = async (oldUser: Record<string, any>) =>
  *   TE.of(...) as TE.TaskEither<Error, Result>
  *
  *  let getPipeJob = (startTimes: number[]) =>

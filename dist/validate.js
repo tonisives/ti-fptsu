@@ -9,8 +9,8 @@ import * as A from "fp-ts/lib/Apply.js";
  * let validateInput = (body: any): E.Either<Error, Input> =>
  *  pipe(
  *    E.Do,
- *    apSc("traces", body.traces ? E.right(body.traces) : E.left("traces is required")),
- *    apSc("config", body.config ? E.right(body.config) : E.left("config is required")),
+ *    apS("traces", body.traces ? E.right(body.traces) : E.left("traces is required")),
+ *    apS("config", body.config ? E.right(body.config) : E.left("config is required")),
  *    E.fold(
  *      (err) => E.left(new Error(err)),
  *      (validated) => E.right(validated as Input),
