@@ -43,8 +43,8 @@ export let batchWithLimit =
  * }
  */
 export let batchWithDelay =
-  <A>(delay: number) =>
-  (tasks: Array<T.Task<A>>): T.Task<Array<A>> =>
+  (delay: number) =>
+  <A>(tasks: Array<T.Task<A>>): T.Task<Array<A>> =>
     pipe(
       tasks,
       A.mapWithIndex((i, task) => T.delay(delay * i)(task)),

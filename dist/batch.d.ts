@@ -29,4 +29,4 @@ export declare let batchWithLimit: <A>(limit: number) => (tasks: Array<T.Task<A>
  *   await pipe(batchWithDelay(30)(jobs))()
  * }
  */
-export declare let batchWithDelay: <A>(delay: number) => (tasks: Array<T.Task<A>>) => T.Task<Array<A>>;
+export declare let batchWithDelay: (delay: number) => <A>(tasks: Array<T.Task<A>>) => T.Task<Array<A>>;

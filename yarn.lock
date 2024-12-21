@@ -1778,6 +1778,7 @@ __metadata:
     typescript: "npm:^5.4.2"
     vitest: "npm:^1.6.0"
   peerDependencies:
+    chalk: "*"
     fp-ts: "*"
     logging-ts: "*"
   languageName: unknown

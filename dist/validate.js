@@ -10,7 +10,7 @@ import * as A from "fp-ts/lib/Apply.js";
  *  pipe(
  *    E.Do,
  *    apS("traces", body.traces ? E.right(body.traces) : E.left("traces is required")),
- *    apS("config", body.config ? E.right(body.config) : E.left("config is required")),
+ *    apS("config", E.fromNullable("Missing type parameter")(body.config)),
  *    E.fold(
  *      (err) => E.left(new Error(err)),
  *      (validated) => E.right(validated as Input),
