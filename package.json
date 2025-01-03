@@ -2,6 +2,10 @@
   "name": "ti-fptsu",
   "version": "0.0.0",
   "exports": {
+    "./lib": {
+      "import": "./dist/lib.js",
+      "types": "./dist/lib.d.ts"
+    },
     "./log": {
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
@@ -14,13 +18,13 @@
       "import": "./dist/batch-te.js",
       "types": "./dist/batch-te.d.ts"
     },
-    "./lib": {
-      "import": "./dist/lib.js",
-      "types": "./dist/lib.d.ts"
-    },
-    "./lib/validate": {
+    "./validate": {
       "import": "./dist/validate.js",
       "types": "./dist/validate.d.ts"
+    },
+    "./try-catch": {
+      "import": "./dist/try-catch.js",
+      "types": "./dist/try-catch.d.ts"
     }
   },
   "type": "module",
@@ -41,5 +45,6 @@
     "chalk": "*",
     "fp-ts": "*",
     "logging-ts": "*"
-  }
+  },
+  "packageManager": "yarn@4.5.3"
 }
