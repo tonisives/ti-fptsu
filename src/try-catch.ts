@@ -4,16 +4,16 @@
 
 import { E, TE } from "./lib.js"
 
-export let tryCatchTE = <E, A>(f: () => Promise<A>) => TE.tryCatch(f, E.toError)
+export let TE_tryCatch = <E, A>(f: () => Promise<A>) => TE.tryCatch(f, E.toError)
 
-export let tryCatchE = <E, A>(f: () => A) => E.tryCatch(f, E.toError)
+export let E_tryCatch = <E, A>(f: () => A) => E.tryCatch(f, E.toError)
 
-export let tryCatchEP =
+export let E_tryCatchP =
   <T, A>(f: (param: T) => A) =>
   (param: T) =>
     E.tryCatch(() => f(param), E.toError)
 
-export let tryCatchTEP =
+export let TE_tryCatchP =
   <T, A>(f: (param: T) => Promise<A>) =>
   (param: T) =>
     TE.tryCatch(() => f(param), E.toError)

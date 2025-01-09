@@ -32,4 +32,4 @@ export let batchWithLimit = (limit) => (tasks) => pipe(tasks, A.chunksOf(limit),
  * }
  */
 export let batchWithDelay = (delay) => (tasks) => pipe(tasks, A.mapWithIndex((i, task) => T.delay(delay * i)(task)), A.sequence(T.ApplicativePar));
-//# sourceMappingURL=batch.js.map
+//# sourceMappingURL=batch-t.js.map

@@ -10,9 +10,9 @@
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
     },
-    "./batch": {
-      "import": "./dist/batch.js",
-      "types": "./dist/batch.d.ts"
+    "./batch-t": {
+      "import": "./dist/batch-t.js",
+      "types": "./dist/batch-t.d.ts"
     },
     "./batch-te": {
       "import": "./dist/batch-te.js",
