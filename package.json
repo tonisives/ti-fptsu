@@ -10,11 +10,11 @@
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
     },
-    "./batch-t": {
+    "./batch/t": {
       "import": "./dist/batch-t.js",
       "types": "./dist/batch-t.d.ts"
     },
-    "./batch-te": {
+    "./batch/te": {
       "import": "./dist/batch-te.js",
       "types": "./dist/batch-te.d.ts"
     },
@@ -22,9 +22,13 @@
       "import": "./dist/validate.js",
       "types": "./dist/validate.d.ts"
     },
-    "./try-catch": {
-      "import": "./dist/try-catch.js",
-      "types": "./dist/try-catch.d.ts"
+    "./try-catch/e": {
+      "import": "./dist/try-catch-e.js",
+      "types": "./dist/try-catch-e.d.ts"
+    },
+    "./try-catch/te": {
+      "import": "./dist/try-catch-te.js",
+      "types": "./dist/try-catch-te.d.ts"
     }
   },
   "type": "module",

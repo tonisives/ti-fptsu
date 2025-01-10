@@ -1,8 +1,7 @@
-import { pipe } from "fp-ts/lib/function.js"
-import * as A from "fp-ts/lib/Array.js"
-import * as TE from "fp-ts/lib/TaskEither.js"
-import { T } from "./lib.js"
-
+import { pipe } from "fp-ts/lib/function.js";
+import * as A from "fp-ts/lib/Array.js";
+import * as TE from "fp-ts/lib/TaskEither.js";
+import { T } from "../lib.js";
 /**
  * batch in parallel with limited concurrency
  *
@@ -13,17 +12,7 @@ import { T } from "./lib.js"
  *   )
  * )()
  */
-export let batchWithLimit =
-  <E, A>(limit: number) =>
-  (tasks: Array<TE.TaskEither<E, A>>): TE.TaskEither<E, Array<A>> =>
-    pipe(
-      tasks,
-      A.chunksOf(limit),
-      A.map(A.sequence(TE.ApplicativePar)),
-      A.sequence(TE.ApplicativeSeq),
-      TE.map(A.flatten),
-    ) as TE.TaskEither<E, Array<A>>
-
+export let batchWithLimit = (limit) => (tasks) => pipe(tasks, A.chunksOf(limit), A.map(A.sequence(TE.ApplicativePar)), A.sequence(TE.ApplicativeSeq), TE.map(A.flatten));
 /**
  * Batch an array of tasks with a delay between each task.
  *
@@ -45,11 +34,5 @@ export let batchWithLimit =
  * }
  *
  */
-export let batchWithDelay =
-  <E, A>(delay: number) =>
-  (tasks: Array<TE.TaskEither<E, A>>): TE.TaskEither<E, Array<A>> =>
-    pipe(
-      tasks,
-      A.mapWithIndex((i, task) => T.delay(delay * i)(task)),
-      A.sequence(TE.ApplicativePar),
-    ) as TE.TaskEither<E, Array<A>>
+export let batchWithDelay = (delay) => (tasks) => pipe(tasks, A.mapWithIndex((i, task) => T.delay(delay * i)(task)), A.sequence(TE.ApplicativePar));
+//# sourceMappingURL=batch-te.js.map
