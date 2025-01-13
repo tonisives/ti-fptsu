@@ -21,14 +21,6 @@
     "./validate": {
       "import": "./dist/validate.js",
       "types": "./dist/validate.d.ts"
-    },
-    "./try-catch/e": {
-      "import": "./dist/try-catch/try-catch-e.js",
-      "types": "./dist/try-catch/try-catch-e.d.ts"
-    },
-    "./try-catch/te": {
-      "import": "./dist/try-catch/try-catch-te.js",
-      "types": "./dist/try-catch/try-catch-te.d.ts"
     }
   },
   "type": "module",
