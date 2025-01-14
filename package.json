@@ -11,12 +11,12 @@
       "types": "./dist/log.d.ts"
     },
     "./batch/t": {
-      "import": "./dist/batch-t.js",
-      "types": "./dist/batch-t.d.ts"
+      "import": "./dist/batch/batch-t.js",
+      "types": "./dist/batch/batch-t.d.ts"
     },
     "./batch/te": {
-      "import": "./dist/batch-te.js",
-      "types": "./dist/batch-te.d.ts"
+      "import": "./dist/batch/batch-te.js",
+      "types": "./dist/batch/batch-te.d.ts"
     },
     "./validate": {
       "import": "./dist/validate.js",
