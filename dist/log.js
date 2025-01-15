@@ -37,6 +37,20 @@ export let lgy = (message, progress) => (ma) => {
     }
 };
 /**
+ * Logs a green log between TE functions
+ *
+ * @param progress optional callback about the progress. run automatically
+ */
+export let lgg = (message, progress) => (ma) => {
+    progress?.();
+    if (typeof message === "function") {
+        return lgc("green", message)(ma);
+    }
+    else {
+        return lgc("green", () => message)(ma);
+    }
+};
+/**
  * Logs a yellow log in the first pipe function call.
  *
  * Call this as the first function in a pipe to log that flow is starting.
@@ -48,6 +62,20 @@ export let lgyf = (message, progress) => {
     }
     else {
         console.log(chalk.yellow(message));
+    }
+};
+/**
+ * Logs a green log in the first pipe function call.
+ *
+ * Call this as the first function in a pipe to log that flow is starting.
+ */
+export let lggf = (message, progress) => {
+    progress?.();
+    if (typeof message === "function") {
+        console.log(chalk.green(message()));
+    }
+    else {
+        console.log(chalk.green(message));
     }
 };
 //# sourceMappingURL=log.js.map
