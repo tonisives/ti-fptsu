@@ -3,7 +3,7 @@ different fp-ts utils
 ## Installation
 
 ```
-yarn add fp-ts logging-ts chalk ti-fptsu@tonisives/ti-fptsu
+yarn add fp-ts logging-ts io-ts chalk ti-fptsu@tonisives/ti-fptsu
 ```
 
 ## Usage

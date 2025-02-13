@@ -1,6 +1,7 @@
 {
   "name": "ti-fptsu",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "type": "module",
   "exports": {
     "./lib": {
       "import": "./dist/lib.js",
@@ -21,9 +22,24 @@
     "./validate": {
       "import": "./dist/validate.js",
       "types": "./dist/validate.d.ts"
+    },
+    "./io-ts": {
+      "import": "./dist/io-ts.js",
+      "types": "./dist/io-ts.d.ts"
     }
   },
-  "type": "module",
+  "description": "A collection of utilities for fp-ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tonisives/ti-fptsu"
+  },
+  "keywords": [
+    "fp-ts",
+    "functional programming",
+    "typescript",
+    "utility"
+  ],
   "scripts": {
     "build": "tsc",
     "test": ""
@@ -32,6 +48,7 @@
     "@types/node": "^20.11.30",
     "chalk": "^5.3.0",
     "fp-ts": "^2.16.5",
+    "io-ts": "^2.2.22",
     "logging-ts": "^0.3.4",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2",
@@ -40,7 +57,8 @@
   "peerDependencies": {
     "chalk": "*",
     "fp-ts": "*",
+    "io-ts": "*",
     "logging-ts": "*"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "yarn@4.6.0"
 }
