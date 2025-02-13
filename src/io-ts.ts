@@ -1,7 +1,16 @@
 import { Errors } from "io-ts"
 import { E } from "./lib.js"
-import { PathReporter } from "io-ts/PathReporter"
+import { PathReporter } from "io-ts/lib/PathReporter.js"
 
+/**
+pipe(
+  data,
+  ResponseCodec.decode,
+  E.mapLeft(joinSchemaErrors),
+  ...
+)
+ 
+ */
 export let joinSchemaErrors = (errors: Errors): string => {
   const uniqueErrors = new Set(
     PathReporter.report(E.left(errors)).map((error) => {

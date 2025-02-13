@@ -1,5 +1,14 @@
 import { E } from "./lib.js";
-import { PathReporter } from "io-ts/PathReporter";
+import { PathReporter } from "io-ts/lib/PathReporter.js";
+/**
+pipe(
+  data,
+  ResponseCodec.decode,
+  E.mapLeft(joinSchemaErrors),
+  ...
+)
+ 
+ */
 export let joinSchemaErrors = (errors) => {
     const uniqueErrors = new Set(PathReporter.report(E.left(errors)).map((error) => {
         if (error.match(/Invalid value/)) {
