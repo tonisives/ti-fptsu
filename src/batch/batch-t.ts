@@ -24,6 +24,11 @@ export let batchWithLimit =
     ) as T.Task<Array<A>>
 
 /**
+ * ! Note that this has some kind of issue of not catching errors from upper level 
+ * try {} catch {} blocks. Whole app crashes.
+ * 
+ * -- 
+ * 
  * Batch with delay for each item
  *
  * @example

@@ -11,6 +11,11 @@ import * as T from "fp-ts/lib/Task.js";
  */
 export declare let batchWithLimit: <A>(limit: number) => (tasks: Array<T.Task<A>>) => T.Task<Array<A>>;
 /**
+ * ! Note that this has some kind of issue of not catching errors from upper level
+ * try {} catch {} blocks. Whole app crashes.
+ *
+ * --
+ *
  * Batch with delay for each item
  *
  * @example

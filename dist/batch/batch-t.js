@@ -13,6 +13,11 @@ import * as T from "fp-ts/lib/Task.js";
  */
 export let batchWithLimit = (limit) => (tasks) => pipe(tasks, A.chunksOf(limit), A.map(A.sequence(T.ApplicativePar)), A.sequence(T.ApplicativeSeq), T.map(A.flatten));
 /**
+ * ! Note that this has some kind of issue of not catching errors from upper level
+ * try {} catch {} blocks. Whole app crashes.
+ *
+ * --
+ *
  * Batch with delay for each item
  *
  * @example
