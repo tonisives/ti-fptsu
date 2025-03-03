@@ -15,5 +15,5 @@ import { TaskEither } from "fp-ts/lib/TaskEither.js"
 
 export const asksRte = asksReaderTaskEither
 
-export type TE<E, A> = TaskEither<E, A>
-export type RTE<R, E, A> = ReaderTaskEither<R, E, A>
+export type Tt<E, A> = TaskEither<E, A>
+export type Rt<R, E, A> = ReaderTaskEither<R, E, A>
