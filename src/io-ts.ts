@@ -4,14 +4,14 @@ import { PathReporter } from "io-ts/lib/PathReporter.js"
 
 /**
 pipe(
-  data,
+  data, // string
   ResponseCodec.decode,
   E.mapLeft(joinSchemaErrors),
   ...
 )
  
  */
-export let joinSchemaErrors = (errors: Errors): string => {
+export let joinFieldNames = (errors: Errors): string => {
   const uniqueErrors = new Set(
     PathReporter.report(E.left(errors)).map((error) => {
       if (error.match(/Invalid value/)) {
@@ -26,4 +26,8 @@ export let joinSchemaErrors = (errors: Errors): string => {
   )
 
   return "Invalid or missing fields: " + Array.from(uniqueErrors).join(", ")
+}
+
+export let simpleJoin = (errors: Errors): string => {
+  return Array.from(new Set(errors)).join(", ")
 }

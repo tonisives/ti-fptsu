@@ -1,7 +1,7 @@
 import { pipe } from "fp-ts/lib/function.js"
 import * as A from "fp-ts/lib/Array.js"
 import * as TE from "fp-ts/lib/TaskEither.js"
-import { T } from "../lib.js"
+import * as T from "fp-ts/lib/Task.js"
 
 /**
  * batch in parallel with limited concurrency
