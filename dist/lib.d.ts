@@ -9,5 +9,5 @@ export declare let flow: typeof fun.flow;
 import { ReaderTaskEither } from "fp-ts/lib/ReaderTaskEither.js";
 import { TaskEither } from "fp-ts/lib/TaskEither.js";
 export declare const asksRte: <R, E, A>(f: (r: R) => ReaderTaskEither<R, E, A>) => ReaderTaskEither<R, E, A>;
-export type Tt<E, A> = TaskEither<E, A>;
-export type Rt<R, E, A> = ReaderTaskEither<R, E, A>;
+export type TaskE<E, A> = TaskEither<E, A>;
+export type ReaderTE<R, E, A> = ReaderTaskEither<R, E, A>;
