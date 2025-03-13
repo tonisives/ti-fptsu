@@ -9,4 +9,5 @@ export let pipe = fun.pipe;
 export let flow = fun.flow;
 import { asksReaderTaskEither } from "fp-ts/lib/ReaderTaskEither.js";
 export const asksRte = asksReaderTaskEither;
+export let toNonReadOnly = (it) => it;
 //# sourceMappingURL=lib.js.map

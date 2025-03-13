@@ -17,3 +17,5 @@ export const asksRte = asksReaderTaskEither
 
 export type TaskE<E, A> = TaskEither<E, A>
 export type ReaderTE<R, E, A> = ReaderTaskEither<R, E, A>
+
+export let toNonReadOnly = <T>(it: readonly T[]): T[] => it as T[]

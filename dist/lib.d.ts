@@ -11,3 +11,4 @@ import { TaskEither } from "fp-ts/lib/TaskEither.js";
 export declare const asksRte: <R, E, A>(f: (r: R) => ReaderTaskEither<R, E, A>) => ReaderTaskEither<R, E, A>;
 export type TaskE<E, A> = TaskEither<E, A>;
 export type ReaderTE<R, E, A> = ReaderTaskEither<R, E, A>;
+export declare let toNonReadOnly: <T>(it: readonly T[]) => T[];
