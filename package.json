@@ -7,6 +7,10 @@
       "import": "./dist/lib.js",
       "types": "./dist/lib.d.ts"
     },
+    "./utils": {
+      "import": "./dist/utils.js",
+      "types": "./dist/utils.d.ts"
+    },
     "./log": {
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
