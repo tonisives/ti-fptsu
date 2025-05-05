@@ -1101,6 +1101,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jst-logger@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "jst-logger@npm:2.1.0"
+  checksum: 10c0/2e76c5e219adf478132c44d1df3c2ac0be8f1c3fb7bf3d72059337e1953336e87c3e438412fb1057d9f55a5134e2fc80528a041401ff6fef8c80f75d27c8d0c0
+  languageName: node
+  linkType: hard
+
 "local-pkg@npm:^0.5.0":
   version: 0.5.1
   resolution: "local-pkg@npm:0.5.1"
@@ -1768,6 +1775,7 @@ __metadata:
     chalk: "npm:^5.3.0"
     fp-ts: "npm:^2.16.5"
     io-ts: "npm:^2.2.22"
+    jst-logger: "npm:^2.1.0"
     logging-ts: "npm:^0.3.4"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.4.2"
@@ -1776,6 +1784,7 @@ __metadata:
     chalk: "*"
     fp-ts: "*"
     io-ts: "*"
+    jst-logger: "*"
     logging-ts: "*"
   languageName: unknown
   linkType: soft

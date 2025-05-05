@@ -1,5 +1,5 @@
-"use strict";
 // wip
+export {};
 // export let parallelTE = <E, T>(
 //   ...tasks: Array<T & { 0: TE.TaskEither<DomainError, T> }>
 // ): TE.TaskEither<DomainError, Array<E>> =>
