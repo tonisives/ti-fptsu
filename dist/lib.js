@@ -4,6 +4,7 @@ export * as T from "fp-ts/lib/TaskEither.js";
 export * as R from "fp-ts/lib/ReaderTaskEither.js";
 export * as E from "fp-ts/lib/Either.js";
 export * as A from "fp-ts/lib/Array.js";
+export * as B from "fp-ts/lib/boolean.js";
 import * as fun from "fp-ts/lib/function.js";
 export let pipe = fun.pipe;
 export let flow = fun.flow;
