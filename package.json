@@ -15,6 +15,10 @@
       "import": "./dist/log.js",
       "types": "./dist/log.d.ts"
     },
+    "./log-jst": {
+      "import": "./dist/log-jst.js",
+      "types": "./dist/log-jst.d.ts"
+    },
     "./batch/t": {
       "import": "./dist/batch/batch-t.js",
       "types": "./dist/batch/batch-t.d.ts"
