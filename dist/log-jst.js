@@ -1,6 +1,6 @@
-import { T } from "./lib.js";
+import { te } from "./lib.js";
 import { Logger } from "jst-logger";
-let withLogger = (logger) => (message) => T.chainFirst((a) => T.fromIO(logger(message(a))));
+let withLogger = (logger) => (message) => te.chainFirst((a) => te.fromIO(logger(message(a))));
 var debug = function (a) {
     return function () {
         return Logger.debug(a);

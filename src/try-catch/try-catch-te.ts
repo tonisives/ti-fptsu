@@ -1,6 +1,7 @@
-import { E, T } from "../lib.js"
+import { tell } from "fp-ts/lib/Writer.js"
+import { e, te } from "../lib.js"
 
 export let tryCatch =
   <T, A>(f: (param: T) => Promise<A>) =>
   (param: T) =>
-    T.tryCatch(() => f(param), E.toError)
+    te.tryCatch(() => f(param), e.toError)

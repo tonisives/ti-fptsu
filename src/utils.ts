@@ -1,11 +1,11 @@
-import { pipe, T, TaskE } from "./lib.js"
+import { pipe, te, TaskE } from "./lib.js"
 
 export let toNonReadOnly = <T>(it: readonly T[]): T[] => it as T[]
 
 export let getOrThrow = <T, E>(t: TaskE<E, T>): (() => Promise<T>) =>
   pipe(
     t,
-    T.getOrElse((e) => {
+    te.getOrElse((e) => {
       throw e
     }),
   )

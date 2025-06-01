@@ -1,6 +1,6 @@
-import { pipe, T } from "./lib.js";
+import { pipe, te } from "./lib.js";
 export let toNonReadOnly = (it) => it;
-export let getOrThrow = (t) => pipe(t, T.getOrElse((e) => {
+export let getOrThrow = (t) => pipe(t, te.getOrElse((e) => {
     throw e;
 }));
 //# sourceMappingURL=utils.js.map

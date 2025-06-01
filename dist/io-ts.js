@@ -1,4 +1,4 @@
-import { E } from "./lib.js";
+import { e } from "./lib.js";
 import { PathReporter } from "io-ts/lib/PathReporter.js";
 /**
 pipe(
@@ -10,7 +10,7 @@ pipe(
  
  */
 export let joinFieldNames = (errors) => {
-    const uniqueErrors = new Set(PathReporter.report(E.left(errors)).map((error) => {
+    const uniqueErrors = new Set(PathReporter.report(e.left(errors)).map((error) => {
         if (error.match(/Invalid value/)) {
             const fieldMatch = error.match(/\/([^/]+):/);
             if (fieldMatch) {

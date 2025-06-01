@@ -1,4 +1,4 @@
-import { E } from "./lib.js";
+import { e } from "./lib.js";
 /**
  * concat all errors into a single string (apS)
  *
@@ -14,4 +14,4 @@ import { E } from "./lib.js";
  *    ),
  *  )
  */
-export declare let apS: <N extends string, A, B>(name: Exclude<N, keyof A>, fb: E.Either<string, B>) => (fa: E.Either<string, A>) => E.Either<string, { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B; }>;
+export declare let apS: <N extends string, A, B>(name: Exclude<N, keyof A>, fb: e.Either<string, B>) => (fa: e.Either<string, A>) => e.Either<string, { readonly [K in N | keyof A]: K extends keyof A ? A[K] : B; }>;

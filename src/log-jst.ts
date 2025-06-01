@@ -1,12 +1,12 @@
 // with jst-logger
 import * as L from "logging-ts/lib/IO.js"
-import { T } from "./lib.js"
+import { te } from "./lib.js"
 import { Logger } from "jst-logger"
 
 let withLogger =
   (logger: L.LoggerIO<string>) =>
-  <A>(message: (a: A) => string): (<E>(ma: T.TaskEither<E, A>) => T.TaskEither<E, A>) =>
-    T.chainFirst((a) => T.fromIO(logger(message(a))))
+  <A>(message: (a: A) => string): (<E>(ma: te.TaskEither<E, A>) => te.TaskEither<E, A>) =>
+    te.chainFirst((a) => te.fromIO(logger(message(a))))
 
 var debug = function (a: any) {
   return function () {

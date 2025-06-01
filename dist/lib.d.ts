@@ -1,9 +1,10 @@
-export * as O from "fp-ts/lib/Option.js";
-export * as T from "fp-ts/lib/TaskEither.js";
-export * as R from "fp-ts/lib/ReaderTaskEither.js";
-export * as E from "fp-ts/lib/Either.js";
-export * as A from "fp-ts/lib/Array.js";
-export * as B from "fp-ts/lib/boolean.js";
+export * as o from "fp-ts/lib/Option.js";
+export * as te from "fp-ts/lib/TaskEither.js";
+export * as rte from "fp-ts/lib/ReaderTaskEither.js";
+export * as e from "fp-ts/lib/Either.js";
+export * as a from "fp-ts/lib/Array.js";
+export * as b from "fp-ts/lib/boolean.js";
+export * as nea from "fp-ts/lib/NonEmptyArray.js";
 import * as fun from "fp-ts/lib/function.js";
 export declare let pipe: typeof fun.pipe;
 export declare let flow: typeof fun.flow;

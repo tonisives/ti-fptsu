@@ -2,9 +2,9 @@
 // >
 // tryCatchE(dbClient.send(command))
 
-import { E } from "../lib.js"
+import { e } from "../lib.js"
 
 export let tryCatch =
   <T, A>(f: (param: T) => A) =>
   (param: T) =>
-    E.tryCatch(() => f(param), E.toError)
+    e.tryCatch(() => f(param), e.toError)

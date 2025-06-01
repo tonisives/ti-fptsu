@@ -1,5 +1,5 @@
 import { string } from "fp-ts"
-import { E, pipe } from "./lib.js"
+import { e, pipe } from "./lib.js"
 import * as S from "fp-ts/lib/Semigroup.js"
 import * as A from "fp-ts/lib/Apply.js"
 
@@ -18,4 +18,4 @@ import * as A from "fp-ts/lib/Apply.js"
  *    ),
  *  )
  */
-export let apS = A.apS(E.getApplicativeValidation(pipe(string.Semigroup, S.intercalate(", "))))
+export let apS = A.apS(e.getApplicativeValidation(pipe(string.Semigroup, S.intercalate(", "))))
