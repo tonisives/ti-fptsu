@@ -1,4 +1,5 @@
 // one possible problem when adding this file: Are all of these exports included in the final bundle?
+export * as io from "fp-ts/lib/IO.js";
 export * as o from "fp-ts/lib/Option.js";
 export * as e from "fp-ts/lib/Either.js";
 export * as te from "fp-ts/lib/TaskEither.js";

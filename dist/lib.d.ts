@@ -1,3 +1,4 @@
+export * as io from "fp-ts/lib/IO.js";
 export * as o from "fp-ts/lib/Option.js";
 export * as e from "fp-ts/lib/Either.js";
 export * as te from "fp-ts/lib/TaskEither.js";
