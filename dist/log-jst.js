@@ -1,4 +1,4 @@
-import { te } from "./lib.js";
+import { io, pipe, te } from "./lib.js";
 import { Logger } from "jst-logger";
 let withLogger = (logger) => (message) => te.chainFirst((a) => te.fromIO(logger(message(a))));
 var debug = function (a) {
@@ -6,6 +6,7 @@ var debug = function (a) {
         return Logger.debug(a);
     };
 };
+export let llIO = (msgFn, logFn) => () => pipe(msgFn, logFn, io.of);
 export let lgd = withLogger(debug);
 export let elg = (error) => {
     try {

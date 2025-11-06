@@ -1,6 +1,6 @@
 // with jst-logger
 import * as L from "logging-ts/lib/IO.js"
-import { te } from "./lib.js"
+import { io, pipe, te } from "./lib.js"
 import { Logger } from "jst-logger"
 
 let withLogger =
@@ -13,6 +13,10 @@ var debug = function (a: any) {
     return Logger.debug(a)
   }
 }
+
+export let llIO = (msgFn: () => string, logFn: (logMsgFn: () => string) => void) => () =>
+  pipe(msgFn, logFn, io.of)
+
 export let lgd = withLogger(debug)
 
 export let elg = (error: any) => {
