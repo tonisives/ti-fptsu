@@ -34,7 +34,8 @@
     "./io-ts": {
       "import": "./dist/io-ts.js",
       "types": "./dist/io-ts.d.ts"
-    }
+    },
+    "./eslint-plugin-fpts-style": "./eslint-plugin-fpts-style/index.js"
   },
   "description": "A collection of utilities for fp-ts",
   "license": "MIT",
