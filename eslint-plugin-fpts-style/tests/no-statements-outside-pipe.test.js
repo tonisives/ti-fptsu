@@ -10,7 +10,7 @@ const ruleTester = new RuleTester({
 
 ruleTester.run("no-statements-outside-pipe", rule, {
   valid: [
-    // Single pipe expression without block
+    // Multiple operations in pipe
     {
       code: `
         import { pipe } from "fp-ts/function"
@@ -22,7 +22,7 @@ ruleTester.run("no-statements-outside-pipe", rule, {
         )
       `,
     },
-    // Curried function returning pipe
+    // Curried function with multiple operations in pipe
     {
       code: `
         import { pipe } from "fp-ts/function"
@@ -46,6 +46,57 @@ ruleTester.run("no-statements-outside-pipe", rule, {
   ],
 
   invalid: [
+    // Should flag unnecessary pipe with single expression
+    {
+      code: `
+        import { pipe } from "fp-ts/function"
+        import * as te from "fp-ts/TaskEither"
+
+        const getData = (id) => pipe(
+          te.of(id)
+        )
+      `,
+      errors: [
+        {
+          messageId: "unnecessaryPipe",
+        },
+      ],
+    },
+    // Should flag unnecessary pipe in curried function
+    {
+      code: `
+        import { pipe } from "fp-ts/function"
+        import * as te from "fp-ts/TaskEither"
+
+        const getData = (deps) => (id) => pipe(
+          te.tryCatch(() => fetch(id), toError)
+        )
+      `,
+      errors: [
+        {
+          messageId: "unnecessaryPipe",
+        },
+      ],
+    },
+    // Should flag unnecessary pipe in triple-curried function
+    {
+      code: `
+        import { pipe } from "ti-fptsu/lib"
+        import * as te from "ti-fptsu/lib"
+
+        const getPostsByIds = (sql) => (postIds) => pipe(
+          te.tryCatch(
+            () => executeGetPostsByIdsQuery(sql)(postIds),
+            toDomainError("DB_V4_QUERY_ERROR")
+          )
+        )
+      `,
+      errors: [
+        {
+          messageId: "unnecessaryPipe",
+        },
+      ],
+    },
     // Should flag statements outside pipe
     {
       code: `
