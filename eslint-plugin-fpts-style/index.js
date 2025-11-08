@@ -9,5 +9,6 @@ module.exports = {
     "no-long-inline-functions-in-pipe": require("./rules/no-long-inline-functions-in-pipe"),
     "enforce-file-layout": require("./rules/enforce-file-layout"),
     "no-pipe-in-brackets": require("./rules/no-pipe-in-brackets"),
+    "no-fp-ts-lib-imports": require("./rules/no-fp-ts-lib-imports"),
   },
 }
