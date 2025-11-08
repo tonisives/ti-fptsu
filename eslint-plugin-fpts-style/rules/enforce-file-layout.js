@@ -53,6 +53,20 @@ module.exports = {
       }
     }
 
+    function isVariableFunction(node) {
+      if (node.type !== "VariableDeclaration") return false
+      if (node.declarations.length === 0) return false
+
+      const declarator = node.declarations[0]
+      if (!declarator.init) return false
+
+      // Check if it's a function expression or arrow function
+      return (
+        declarator.init.type === "ArrowFunctionExpression" ||
+        declarator.init.type === "FunctionExpression"
+      )
+    }
+
     function getDeclarationName(node) {
       if (node.id && node.id.name) {
         return node.id.name
@@ -96,12 +110,28 @@ module.exports = {
       "Program:exit"() {
         if (declarations.length === 0) return
 
-        // Find the first private declaration
-        const firstPrivateIndex = declarations.findIndex((d) => !d.isExport)
-        if (firstPrivateIndex === -1) return // All exports, no problem
+        // Find the first private function
+        // This includes: function declarations, let declarations, and const function expressions
+        // Allow private const variables, types, interfaces, enums at the top
+        const firstPrivateFunctionIndex = declarations.findIndex((d) => {
+          if (d.isExport) return false
 
-        // Check if any exports come after the first private declaration
-        for (let i = firstPrivateIndex + 1; i < declarations.length; i++) {
+          // Function declarations are always private functions
+          if (d.node.type === "FunctionDeclaration") return true
+
+          // let declarations are private functions
+          if (d.type === "let") return true
+
+          // const declarations that are functions (arrow or function expressions)
+          if (d.type === "const" && isVariableFunction(d.node)) return true
+
+          return false
+        })
+
+        if (firstPrivateFunctionIndex === -1) return // No private functions, no problem
+
+        // Check if any exports come after the first private function
+        for (let i = firstPrivateFunctionIndex + 1; i < declarations.length; i++) {
           const decl = declarations[i]
           if (decl.isExport) {
             context.report({
