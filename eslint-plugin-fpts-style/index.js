@@ -6,5 +6,7 @@ module.exports = {
     "no-const-variables": require("./rules/no-const-variables"),
     "no-async-await": require("./rules/no-async-await"),
     "prefer-a-map": require("./rules/prefer-a-map"),
+    "no-long-inline-functions-in-pipe": require("./rules/no-long-inline-functions-in-pipe"),
+    "enforce-file-layout": require("./rules/enforce-file-layout"),
   },
 }

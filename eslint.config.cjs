@@ -19,6 +19,7 @@ module.exports = [
       "fpts-style/no-const-variables": "warn",
       "fpts-style/no-async-await": "error",
       "fpts-style/prefer-a-map": "error",
+      "fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }],
     },
   },
   {

@@ -156,6 +156,90 @@ let job = te.tryCatch(asyncFn, toError)
 await mainTask()
 ```
 
+### fpts-style/no-long-inline-functions-in-pipe (error)
+
+Disallows long inline functions inside pipe expressions. Inline functions should be extracted to named functions for better readability and testability.
+
+**Default:** Maximum 5 lines allowed for inline functions.
+
+**Configuration:** You can customize the maximum lines allowed:
+```js
+"fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }]
+```
+
+**Bad:**
+```ts
+pipe(
+  getData(),
+  te.match(
+    (error) => {
+      if (error.error === "NOT_FOUND") {
+        let response = createErrorResponse("NOT_FOUND", "No active subscription found")
+        return reply.status(404).send(response)
+      }
+      let response = createErrorResponse(error.error, error.message || "Failed")
+      return reply.status(500).send(response)
+    },
+    (data) => reply.send(createSuccessResponse(data))
+  )
+)
+```
+
+**Good:**
+```ts
+let handleError = (error: DomainError) => {
+  if (error.error === "NOT_FOUND") {
+    let response = createErrorResponse("NOT_FOUND", "No active subscription found")
+    return reply.status(404).send(response)
+  }
+  let response = createErrorResponse(error.error, error.message || "Failed")
+  return reply.status(500).send(response)
+}
+
+let handleSuccess = (data: Data) => reply.send(createSuccessResponse(data))
+
+pipe(
+  getData(),
+  te.match(handleError, handleSuccess)
+)
+```
+
+### fpts-style/enforce-file-layout (error)
+
+Enforces a consistent file layout where all exported items (types, functions, constants) come first, followed by private helper functions.
+
+**Bad:**
+```ts
+const privateHelper = () => {
+  // implementation
+}
+
+export const publicApi = () => {  // Error: export after private
+  // implementation
+}
+```
+
+**Good:**
+```ts
+export const publicApi = () => {
+  // implementation
+}
+
+const privateHelper = () => {
+  // implementation
+}
+```
+
+**Another Good Example:**
+```ts
+export type User = { name: string }
+export const createUser = (name: string): User => ({ name })
+export const validateUser = (user: User) => user.name.length > 0
+
+const sanitizeName = (name: string) => name.trim()
+const checkNameLength = (name: string) => name.length > 0
+```
+
 ## Usage
 
 The plugin is automatically configured in your project. Run:
@@ -205,6 +289,9 @@ module.exports = [
       "fpts-style/no-nested-pipes": "error",
       "fpts-style/no-const-variables": "warn",
       "fpts-style/no-async-await": "error",
+      "fpts-style/prefer-a-map": "error",
+      "fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }],
+      "fpts-style/enforce-file-layout": "error",
     },
   },
   {
