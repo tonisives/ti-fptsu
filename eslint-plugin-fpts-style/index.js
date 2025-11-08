@@ -8,5 +8,6 @@ module.exports = {
     "prefer-a-map": require("./rules/prefer-a-map"),
     "no-long-inline-functions-in-pipe": require("./rules/no-long-inline-functions-in-pipe"),
     "enforce-file-layout": require("./rules/enforce-file-layout"),
+    "no-pipe-in-brackets": require("./rules/no-pipe-in-brackets"),
   },
 }

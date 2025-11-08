@@ -20,6 +20,7 @@ module.exports = [
       "fpts-style/no-async-await": "error",
       "fpts-style/prefer-a-map": "error",
       "fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }],
+      "fpts-style/no-pipe-in-brackets": "error",
     },
   },
   {
