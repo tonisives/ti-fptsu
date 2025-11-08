@@ -18,6 +18,7 @@ module.exports = [
       "fpts-style/no-nested-pipes": "error",
       "fpts-style/no-const-variables": "warn",
       "fpts-style/no-async-await": "error",
+      "fpts-style/prefer-a-map": "error",
     },
   },
   {

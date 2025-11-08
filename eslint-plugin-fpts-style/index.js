@@ -5,5 +5,6 @@ module.exports = {
     "no-nested-pipes": require("./rules/no-nested-pipes"),
     "no-const-variables": require("./rules/no-const-variables"),
     "no-async-await": require("./rules/no-async-await"),
+    "prefer-a-map": require("./rules/prefer-a-map"),
   },
 }

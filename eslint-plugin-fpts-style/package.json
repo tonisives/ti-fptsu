@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "ESLint plugin to enforce fp-ts coding standards",
   "main": "index.js",
+  "scripts": {
+    "test": "node tests/run-tests.js"
+  },
   "keywords": ["eslint", "eslintplugin", "fp-ts", "functional-programming"],
   "peerDependencies": {
     "eslint": ">=7.0.0"
