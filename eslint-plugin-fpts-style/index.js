@@ -10,5 +10,7 @@ module.exports = {
     "enforce-file-layout": require("./rules/enforce-file-layout"),
     "no-pipe-in-brackets": require("./rules/no-pipe-in-brackets"),
     "no-fp-ts-lib-imports": require("./rules/no-fp-ts-lib-imports"),
+    "prefer-concise-arrow-function": require("./rules/prefer-concise-arrow-function"),
+    "prefer-merged-short-pipes": require("./rules/prefer-merged-short-pipes"),
   },
 }
