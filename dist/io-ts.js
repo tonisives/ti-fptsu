@@ -22,7 +22,5 @@ export let joinFieldNames = (errors) => {
     }));
     return "Invalid or missing fields: " + Array.from(uniqueErrors).join(", ");
 };
-export let simpleJoin = (errors) => {
-    return Array.from(new Set(errors)).join(", ");
-};
+export let simpleJoin = (errors) => Array.from(new Set(errors)).join(", ");
 //# sourceMappingURL=io-ts.js.map

@@ -2,14 +2,13 @@ module.exports = {
   meta: {
     type: "suggestion",
     docs: {
-      description:
-        "Prefer merging short pipe functions that are only called once",
+      description: "Prefer merging short pipe functions that are only called once",
       category: "Best Practices",
       recommended: true,
     },
     messages: {
       mergePipes:
-        "Function '{{callee}}' has a short pipe (<4 operations) and is only called by '{{caller}}' which also has a short pipe. Consider merging them into a single function.",
+        "Function '{{callee}}' ({{calleeCount}} operations) is only called by '{{caller}}' ({{callerCount}} operations). Combined total is {{total}} operations (<=10). Consider merging them into a single function.",
     },
     schema: [
       {
@@ -31,9 +30,7 @@ module.exports = {
     let functionReferences = new Map()
 
     const maxPipeLength =
-      context.options[0]?.maxPipeLength !== undefined
-        ? context.options[0].maxPipeLength
-        : 4
+      context.options[0]?.maxPipeLength !== undefined ? context.options[0].maxPipeLength : 4
 
     function isPipeCall(node) {
       return (
@@ -65,10 +62,7 @@ module.exports = {
     }
 
     function getFunctionName(node) {
-      if (
-        node.type === "VariableDeclarator" &&
-        node.id.type === "Identifier"
-      ) {
+      if (node.type === "VariableDeclarator" && node.id.type === "Identifier") {
         return node.id.name
       }
       return null
@@ -82,6 +76,9 @@ module.exports = {
       if (node.type === "ArrowFunctionExpression" && node.body) {
         if (isPipeCall(node.body)) {
           return node.body
+        }
+        if (node.body.type === "ArrowFunctionExpression") {
+          return findPipeInFunction(node.body)
         }
       }
 
@@ -105,11 +102,7 @@ module.exports = {
         const functionName = getFunctionName(node)
         if (!functionName) return
 
-        if (
-          node.init &&
-          node.init.type === "ArrowFunctionExpression" &&
-          !isExported(node)
-        ) {
+        if (node.init && node.init.type === "ArrowFunctionExpression" && !isExported(node)) {
           const pipeNode = findPipeInFunction(node.init)
           if (pipeNode) {
             const argCount = countPipeArguments(pipeNode)
@@ -129,18 +122,18 @@ module.exports = {
         if (node.name === "pipe") return
 
         let parent = node.parent
-        while (parent && parent.type !== "CallExpression") {
-          parent = parent.parent
-        }
-
-        if (parent && isPipeCall(parent)) {
-          if (!functionReferences.has(node.name)) {
-            functionReferences.set(node.name, [])
+        while (parent) {
+          if (parent.type === "CallExpression" && isPipeCall(parent)) {
+            if (!functionReferences.has(node.name)) {
+              functionReferences.set(node.name, [])
+            }
+            functionReferences.get(node.name).push({
+              node: node,
+              pipeCall: parent,
+            })
+            break
           }
-          functionReferences.get(node.name).push({
-            node: node,
-            pipeCall: parent,
-          })
+          parent = parent.parent
         }
       },
 
@@ -169,13 +162,17 @@ module.exports = {
           const callerInfo = functionInfo.get(callerName)
           if (!callerInfo) continue
 
-          if (callerInfo.argCount < maxPipeLength) {
+          const totalArgs = callerInfo.argCount + info.argCount
+          if (totalArgs <= 10) {
             context.report({
               node: info.node,
               messageId: "mergePipes",
               data: {
                 callee: functionName,
                 caller: callerName,
+                calleeCount: info.argCount,
+                callerCount: callerInfo.argCount,
+                total: totalArgs,
               },
             })
           }

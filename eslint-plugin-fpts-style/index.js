@@ -12,5 +12,27 @@ module.exports = {
     "no-fp-ts-lib-imports": require("./rules/no-fp-ts-lib-imports"),
     "prefer-concise-arrow-function": require("./rules/prefer-concise-arrow-function"),
     "prefer-merged-short-pipes": require("./rules/prefer-merged-short-pipes"),
+    "no-unnecessary-currying": require("./rules/no-unnecessary-currying"),
+    "prefer-grouped-parameters": require("./rules/prefer-grouped-parameters"),
+  },
+  configs: {
+    recommended: {
+      rules: {
+        "fpts-style/no-statements-outside-pipe": "error",
+        "fpts-style/prefer-flatmap-over-chain": "error",
+        "fpts-style/no-nested-pipes": "error",
+        "fpts-style/no-async-await": "error",
+        "fpts-style/prefer-a-map": "error",
+        "fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }],
+        "fpts-style/enforce-file-layout": "error",
+        "fpts-style/no-pipe-in-brackets": "error",
+        "fpts-style/no-fp-ts-lib-imports": "error",
+        "fpts-style/no-const-variables": "warn",
+        "fpts-style/prefer-concise-arrow-function": "error",
+        "fpts-style/prefer-merged-short-pipes": "warn",
+        "fpts-style/no-unnecessary-currying": "warn",
+        "fpts-style/prefer-grouped-parameters": "warn",
+      },
+    },
   },
 }

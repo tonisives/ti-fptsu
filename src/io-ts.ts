@@ -28,6 +28,4 @@ export let joinFieldNames = (errors: Errors): string => {
   return "Invalid or missing fields: " + Array.from(uniqueErrors).join(", ")
 }
 
-export let simpleJoin = (errors: Errors): string => {
-  return Array.from(new Set(errors)).join(", ")
-}
+export let simpleJoin = (errors: Errors): string => Array.from(new Set(errors)).join(", ")
