@@ -14,6 +14,7 @@ module.exports = {
     "prefer-merged-short-pipes": require("./rules/prefer-merged-short-pipes"),
     "no-unnecessary-currying": require("./rules/no-unnecessary-currying"),
     "prefer-grouped-parameters": require("./rules/prefer-grouped-parameters"),
+    "simplify-task-constructors": require("./rules/simplify-task-constructors"),
   },
   configs: {
     recommended: {
@@ -32,6 +33,7 @@ module.exports = {
         "fpts-style/prefer-merged-short-pipes": "warn",
         "fpts-style/no-unnecessary-currying": "warn",
         "fpts-style/prefer-grouped-parameters": "warn",
+        "fpts-style/simplify-task-constructors": "error",
       },
     },
   },
