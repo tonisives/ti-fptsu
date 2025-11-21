@@ -2,20 +2,36 @@ module.exports = {
   meta: {
     type: "problem",
     docs: {
-      description: "Disallow nested pipe expressions",
+      description: "Disallow nested pipe expressions (configurable threshold for small pipes)",
       category: "Best Practices",
       recommended: true,
     },
     messages: {
       nestedPipe:
-        "Nested pipe expression detected. Extract inner pipe to a separate function and use function pointer instead.",
+        "Nested pipe expression with {{argCount}} arguments detected. Extract inner pipe to a separate function and use function pointer instead.{{allowedMessage}}",
     },
-    schema: [],
+    schema: [
+      {
+        type: "object",
+        properties: {
+          maxNestedPipeArgs: {
+            type: "number",
+            default: 3,
+            minimum: 0,
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
   },
 
   create(context) {
     let hasFptsImport = false
     let pipeDepth = 0
+    const maxNestedPipeArgs =
+      context.options[0]?.maxNestedPipeArgs !== undefined
+        ? context.options[0].maxNestedPipeArgs
+        : 3
 
     return {
       ImportDeclaration(node) {
@@ -41,10 +57,21 @@ module.exports = {
           pipeDepth++
 
           if (pipeDepth > 1) {
-            context.report({
-              node,
-              messageId: "nestedPipe",
-            })
+            const argCount = node.arguments.length
+            if (argCount > maxNestedPipeArgs) {
+              const allowedMessage =
+                maxNestedPipeArgs > 0
+                  ? ` (Pipes with ${maxNestedPipeArgs} or fewer arguments are allowed)`
+                  : ""
+              context.report({
+                node,
+                messageId: "nestedPipe",
+                data: {
+                  argCount: argCount,
+                  allowedMessage: allowedMessage,
+                },
+              })
+            }
           }
         }
       },

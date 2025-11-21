@@ -58,14 +58,25 @@ This rule is auto-fixable with `--fix`.
 
 Prevents nested pipe expressions. Extract inner pipes to separate functions.
 
+**Default:** Allows small nested pipes with 3 or fewer arguments.
+
+**Configuration:** You can customize the threshold or disable nested pipes entirely:
+```js
+"fpts-style/no-nested-pipes": ["error", { maxNestedPipeArgs: 3 }]  // Default
+"fpts-style/no-nested-pipes": ["error", { maxNestedPipeArgs: 0 }]  // Disable all nested pipes
+"fpts-style/no-nested-pipes": ["error", { maxNestedPipeArgs: 5 }]  // Allow up to 5 arguments
+```
+
 **Bad:**
 ```ts
 pipe(
   workTe(),
   te.flatMap(() =>
-    pipe(  // Nested pipe
+    pipe(  // Nested pipe with 4+ arguments
       checkResultTe(),
-      te.flatMap(() => pipe(...))
+      te.map(transform),
+      te.flatMap(validate),
+      te.map(finalize)
     )
   )
 )
@@ -82,6 +93,19 @@ let checkAndContinue = () =>
 pipe(
   workTe(),
   te.flatMap(checkAndContinue)
+)
+```
+
+**Also Good (small nested pipe):**
+```ts
+pipe(
+  workTe(),
+  te.flatMap(() =>
+    pipe(  // Small nested pipe (3 arguments) is allowed
+      checkResultTe(),
+      te.map(transform)
+    )
+  )
 )
 ```
 
