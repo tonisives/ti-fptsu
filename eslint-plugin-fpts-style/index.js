@@ -15,6 +15,7 @@ module.exports = {
     "no-unnecessary-currying": require("./rules/no-unnecessary-currying"),
     "prefer-grouped-parameters": require("./rules/prefer-grouped-parameters"),
     "simplify-task-constructors": require("./rules/simplify-task-constructors"),
+    "prefer-flow-over-pipe": require("./rules/prefer-flow-over-pipe"),
   },
   configs: {
     recommended: {
@@ -34,6 +35,7 @@ module.exports = {
         "fpts-style/no-unnecessary-currying": "warn",
         "fpts-style/prefer-grouped-parameters": "warn",
         "fpts-style/simplify-task-constructors": "error",
+        "fpts-style/prefer-flow-over-pipe": "error",
       },
     },
   },

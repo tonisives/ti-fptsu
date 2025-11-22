@@ -2,12 +2,12 @@ module.exports = {
   meta: {
     type: "suggestion",
     docs: {
-      description: "Prefer flatMap over deprecated chain/chainW methods",
+      description: "Prefer flatMap/tap over deprecated chain functions",
       category: "Best Practices",
       recommended: true,
     },
     messages: {
-      preferFlatMap: "Use 'flatMap' instead of deprecated '{{method}}' method.",
+      preferFlatMap: "Use '{{replacement}}' instead of deprecated '{{method}}'.",
     },
     fixable: "code",
     schema: [],
@@ -16,6 +16,26 @@ module.exports = {
   create(context) {
     let hasFptsImport = false
     let fptsNamespaces = new Set()
+
+    function getReplacementName(chainName) {
+      if (chainName === "chain" || chainName === "chainW") {
+        return "flatMap"
+      }
+
+      if (chainName.startsWith("chainFirst")) {
+        const suffix = chainName.substring("chainFirst".length)
+        const withoutK = suffix.endsWith("K") ? suffix.slice(0, -1) : suffix
+        return "tap" + withoutK
+      }
+
+      if (chainName.startsWith("chain")) {
+        const suffix = chainName.substring("chain".length)
+        const withoutK = suffix.endsWith("K") ? suffix.slice(0, -1) : suffix
+        return "flatMap" + withoutK
+      }
+
+      return null
+    }
 
     return {
       ImportDeclaration(node) {
@@ -41,7 +61,7 @@ module.exports = {
         if (
           property &&
           property.type === "Identifier" &&
-          (property.name === "chain" || property.name === "chainW")
+          property.name.startsWith("chain")
         ) {
           let object = node.object
           if (
@@ -54,14 +74,46 @@ module.exports = {
               object.name === "o" ||
               object.name === "io")
           ) {
+            const replacement = getReplacementName(property.name)
+            if (replacement) {
+              context.report({
+                node: property,
+                messageId: "preferFlatMap",
+                data: {
+                  method: property.name,
+                  replacement: replacement,
+                },
+                fix(fixer) {
+                  return fixer.replaceText(property, replacement)
+                },
+              })
+            }
+          }
+        }
+      },
+
+      Identifier(node) {
+        if (!hasFptsImport) return
+
+        if (!node.name.startsWith("chain")) return
+
+        const parent = node.parent
+        if (
+          parent &&
+          parent.type === "CallExpression" &&
+          parent.callee === node
+        ) {
+          const replacement = getReplacementName(node.name)
+          if (replacement) {
             context.report({
-              node: property,
+              node: node,
               messageId: "preferFlatMap",
               data: {
-                method: property.name,
+                method: node.name,
+                replacement: replacement,
               },
               fix(fixer) {
-                return fixer.replaceText(property, "flatMap")
+                return fixer.replaceText(node, replacement)
               },
             })
           }
