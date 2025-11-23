@@ -5,6 +5,7 @@ different fp-ts utils
 This package includes `eslint-plugin-fpts-style`, a custom ESLint plugin that enforces fp-ts functional programming best practices. The plugin provides 18 rules to ensure consistent, maintainable fp-ts code:
 
 **Core Style Rules:**
+
 - `no-statements-outside-pipe` - Functions must return a single pipe expression
 - `prefer-flatmap-over-chain` - Use `flatMap` instead of deprecated `chain`/`chainW`
 - `no-nested-pipes` - Prevents deeply nested pipes (configurable threshold)
@@ -13,6 +14,7 @@ This package includes `eslint-plugin-fpts-style`, a custom ESLint plugin that en
 - `prefer-merged-short-pipes` - Suggests merging short consecutive pipes
 
 **Code Quality:**
+
 - `no-const-variables` - Prefer `let` over `const` (except UPPER_CASE constants)
 - `no-async-await` - Use TaskEither instead of async/await
 - `enforce-file-layout` - Exports first, then private helpers
@@ -21,6 +23,7 @@ This package includes `eslint-plugin-fpts-style`, a custom ESLint plugin that en
 - `prefer-grouped-parameters` - Groups related parameters for readability
 
 **fp-ts Specific:**
+
 - `no-fp-ts-lib-imports` - Use ti-fptsu aliases instead of direct fp-ts imports
 - `prefer-a-map` - Use `a.map` instead of native array `.map()` in fp-ts code
 - `simplify-task-constructors` - Simplifies Task/TaskEither constructor patterns
@@ -53,13 +56,14 @@ import { te, o, e, a, pipe } from "ti-fptsu/lib"
 // import { pipe } from "fp-ts/lib/function.js"
 
 let result = pipe(
-    te.of(42),
-    te.map(x => x * 2),
-    te.flatMap(x => te.of(x + 1))
+  te.of(42),
+  te.map((x) => x * 2),
+  te.flatMap((x) => te.of(x + 1)),
 )
 ```
 
 **Available aliases:**
+
 - `te` - TaskEither
 - `t` - Task
 - `rte` - ReaderTaskEither
@@ -73,36 +77,7 @@ let result = pipe(
 - `flow` - function flow
 
 **Type aliases:**
+
 - `TaskE<E, A>` - TaskEither<E, A>
 - `ReaderTE<R, E, A>` - ReaderTaskEither<R, E, A>
 - `Opt<A>` - Option<A>
-
-### batch with delay for each item
-
-```typescript
-let getStoreJob = async (oldUser: Record<string, any>) => {
-  oldUser.pk = newPk
-  return await dbClient.send(
-    new PutItemCommand({
-      TableName: "ah_user_1",
-      Item: oldUser,
-    }),
-  )
-}
-
-let runJobs = async (oldUsers: Record<string, any>[]) => {
-  let jobs = oldUsers.map((it) => () => getStoreJob(it))
-  await pipe(batchWithDelay(30)(jobs))()
-}
-
-```
-
-### batch in parallel with limited concurrency
-
-```typescript
-await pipe(
-  batchTasks<ChecklistItemBase | Error>(5)(
-    getStoreJobs(results, existingCl, stored)
-  )
-)()
-```
