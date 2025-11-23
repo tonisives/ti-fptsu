@@ -16,6 +16,8 @@ module.exports = {
     "prefer-grouped-parameters": require("./rules/prefer-grouped-parameters"),
     "simplify-task-constructors": require("./rules/simplify-task-constructors"),
     "prefer-flow-over-pipe": require("./rules/prefer-flow-over-pipe"),
+    "require-flatmap-for-task-returns": require("./rules/require-flatmap-for-task-returns"),
+    "no-unnecessary-thunk-in-io-of": require("./rules/no-unnecessary-thunk-in-io-of"),
   },
   configs: {
     recommended: {
@@ -36,6 +38,8 @@ module.exports = {
         "fpts-style/prefer-grouped-parameters": "warn",
         "fpts-style/simplify-task-constructors": "error",
         "fpts-style/prefer-flow-over-pipe": "error",
+        "fpts-style/require-flatmap-for-task-returns": "error",
+        "fpts-style/no-unnecessary-thunk-in-io-of": "error",
       },
     },
   },

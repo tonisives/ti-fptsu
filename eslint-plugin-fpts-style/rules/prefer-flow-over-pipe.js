@@ -25,6 +25,34 @@ module.exports = {
       )
     }
 
+    function isPipeOrFlowCall(node) {
+      return (
+        node.type === "CallExpression" &&
+        node.callee.type === "Identifier" &&
+        (node.callee.name === "pipe" || node.callee.name === "flow")
+      )
+    }
+
+    function isTopLevelFunctionDeclaration(node) {
+      // Check if this arrow function is directly assigned to a variable
+      // i.e., let foo = (x) => pipe(x, ...)
+      if (node.parent && node.parent.type === "VariableDeclarator" && node.parent.init === node) {
+        return true
+      }
+      return false
+    }
+
+    function isInsidePipeOrFlow(node) {
+      let parent = node.parent
+      while (parent) {
+        if (isPipeOrFlowCall(parent)) {
+          return true
+        }
+        parent = parent.parent
+      }
+      return false
+    }
+
     function isArrowFunction(node) {
       return node.type === "ArrowFunctionExpression"
     }
@@ -70,6 +98,10 @@ module.exports = {
         if (!isPipeCall(body)) return
 
         if (body.arguments.length < 2) return
+
+        if (isTopLevelFunctionDeclaration(node)) return
+
+        if (!isInsidePipeOrFlow(node)) return
 
         const firstArg = body.arguments[0]
         if (isIdentifierReferenceToParam(firstArg, paramName)) {
