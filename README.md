@@ -35,7 +35,7 @@ Many rules are auto-fixable with `--fix`. See [eslint-plugin-fpts-style/README.m
 
 ## Installation
 
-```
+```sh
 yarn add fp-ts ti-fptsu
 ```
 
