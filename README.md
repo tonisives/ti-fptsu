@@ -1,5 +1,35 @@
 different fp-ts utils
 
+## ESLint Plugin
+
+This package includes `eslint-plugin-fpts-style`, a custom ESLint plugin that enforces fp-ts functional programming best practices. The plugin provides 18 rules to ensure consistent, maintainable fp-ts code:
+
+**Core Style Rules:**
+- `no-statements-outside-pipe` - Functions must return a single pipe expression
+- `prefer-flatmap-over-chain` - Use `flatMap` instead of deprecated `chain`/`chainW`
+- `no-nested-pipes` - Prevents deeply nested pipes (configurable threshold)
+- `no-long-inline-functions-in-pipe` - Extract long inline functions (max 5 lines by default)
+- `prefer-concise-arrow-function` - Encourages concise arrow function syntax
+- `prefer-merged-short-pipes` - Suggests merging short consecutive pipes
+
+**Code Quality:**
+- `no-const-variables` - Prefer `let` over `const` (except UPPER_CASE constants)
+- `no-async-await` - Use TaskEither instead of async/await
+- `enforce-file-layout` - Exports first, then private helpers
+- `no-pipe-in-brackets` - Prevents pipes wrapped in unnecessary brackets
+- `no-unnecessary-currying` - Simplifies overly-curried functions
+- `prefer-grouped-parameters` - Groups related parameters for readability
+
+**fp-ts Specific:**
+- `no-fp-ts-lib-imports` - Use ti-fptsu aliases instead of direct fp-ts imports
+- `prefer-a-map` - Use `a.map` instead of native array `.map()` in fp-ts code
+- `simplify-task-constructors` - Simplifies Task/TaskEither constructor patterns
+- `prefer-flow-over-pipe` - Use `flow` for function composition
+- `require-flatmap-for-task-returns` - Ensures proper flatMap when returning Tasks
+- `no-unnecessary-thunk-in-io-of` - Removes unnecessary thunks in IO.of
+
+Many rules are auto-fixable with `--fix`. See [eslint-plugin-fpts-style/README.md](./eslint-plugin-fpts-style/README.md) for detailed documentation and examples.
+
 ## Installation
 
 ```
