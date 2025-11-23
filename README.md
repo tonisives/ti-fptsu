@@ -36,8 +36,36 @@ Many rules are auto-fixable with `--fix`. See [eslint-plugin-fpts-style/README.m
 ## Installation
 
 ```
-yarn add fp-ts logging-ts io-ts chalk ti-fptsu@tonisives/ti-fptsu
+yarn add fp-ts ti-fptsu
 ```
+
+### Adding ESLint to Your Project
+
+To use the `eslint-plugin-fpts-style` plugin in your project:
+
+1. Install dependencies:
+
+```bash
+pnpm add -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-fpts-style
+```
+
+2. Add to your `package.json`:
+
+```json
+{
+  "scripts": {
+    "lint": "pnpm eslint"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-fpts-style": "^3.1.0"
+  }
+}
+```
+
+3. Configure ESLint (see eslint-plugin-fpts-style documentation for configuration examples)
 
 ## Usage
 
