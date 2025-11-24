@@ -398,15 +398,6 @@ export let cancelSubscription =
 
 Stripe API integration, database updates, logging with `tapIO`, and error handling - all in a linear, readable pipe.
 
-## Usage
-
-The plugin is automatically configured in your project. Run:
-
-```bash
-pnpm lint                 # Check for issues
-pnpm lint:fix            # Auto-fix issues where possible
-```
-
 ## Installation
 
 This plugin is located in the ti-fptsu repository. To use it in your project:
@@ -442,14 +433,7 @@ module.exports = [
       "fpts-style": fptsStyle,
     },
     rules: {
-      "fpts-style/no-statements-outside-pipe": "error",
-      "fpts-style/prefer-flatmap-over-chain": "error",
-      "fpts-style/no-nested-pipes": "error",
-      "fpts-style/no-const-variables": "warn",
-      "fpts-style/no-async-await": "error",
-      "fpts-style/prefer-a-map": "error",
-      "fpts-style/no-long-inline-functions-in-pipe": ["error", { maxLines: 5 }],
-      "fpts-style/enforce-file-layout": "error",
+      ...fptsStyle.configs.recommended.rules,
     },
   },
   {
@@ -506,11 +490,3 @@ The rules encode these principles:
 - **Configurable thresholds**: Allow small violations while preventing egregious cases
 - **Error messages guide AI**: Messages teach AI which patterns to use
 - **Progressive enforcement**: Warnings for style, errors for breaking changes
-
-## Learn More
-
-For a complete guide on AI-driven fp-ts development:
-
-- [AI-Driven Functional Programming in TypeScript](https://github.com/tonisives/ti-fptsu/blob/master/docs/ai-driven-fp-ts.md)
-- [ti-fptsu library](https://github.com/tonisives/ti-fptsu) - fp-ts utilities with ESM imports
-- [fp-ts style guides](https://github.com/tonisives/ti-fptsu/tree/master/style-guides) - Complete CLAUDE.md examples
