@@ -19,7 +19,7 @@ module.exports = {
     let taskNamespaces = new Set()
 
     function isTaskConstructor(node) {
-      // Check for t.of(), t.Task, etc.
+      // Check for t.of(), te.of(), t.Task, etc.
       if (
         node.type === "CallExpression" &&
         node.callee.type === "MemberExpression" &&
@@ -43,19 +43,29 @@ module.exports = {
       return false
     }
 
-    function isInsidePipe(node) {
-      let parent = node.parent
-      while (parent) {
-        if (
-          parent.type === "CallExpression" &&
-          parent.callee &&
-          parent.callee.type === "Identifier" &&
-          parent.callee.name === "pipe"
-        ) {
-          return true
-        }
-        parent = parent.parent
+    function isDirectPipeArgument(node) {
+      // Check if this arrow function is a direct argument to pipe()
+      // We want to flag: pipe(t.of(1), () => t.of(2))
+      // But NOT flag: pipe(t.of(1), t.flatMap(() => t.of(2)))
+      const parent = node.parent
+
+      if (!parent || parent.type !== "CallExpression") {
+        return false
       }
+
+      // If parent is a pipe() call, this is a direct argument
+      if (parent.callee && parent.callee.type === "Identifier" && parent.callee.name === "pipe") {
+        return true
+      }
+
+      // If parent is NOT a method call (like flatMap, orElse, etc.), continue checking up
+      // This handles cases where the arrow function is NOT wrapped in a method
+      if (parent.callee && parent.callee.type === "MemberExpression") {
+        // This arrow function is an argument to a method call (flatMap, orElse, etc.)
+        // So it's NOT a direct pipe argument
+        return false
+      }
+
       return false
     }
 
@@ -71,7 +81,7 @@ module.exports = {
           node.specifiers.forEach((spec) => {
             if (spec.type === "ImportNamespaceSpecifier" || spec.type === "ImportSpecifier") {
               // Track namespaces that might be Task-related
-              // Common patterns: import * as t from 'fp-ts/Task'
+              // Common patterns: import * as t from 'fp-ts/Task', import { te } from 'ti-fptsu/lib'
               taskNamespaces.add(spec.local.name)
             }
           })
@@ -81,28 +91,8 @@ module.exports = {
       ArrowFunctionExpression(node) {
         if (!hasFptsImport) return
 
-        // Check if we're inside a pipe
-        if (!isInsidePipe(node)) return
-
-        // Check if this arrow function is a direct argument to pipe
-        // (not wrapped in flatMap/chain)
-        const parent = node.parent
-
-        // If the parent is a CallExpression, check if it's flatMap/chain
-        if (parent && parent.type === "CallExpression") {
-          // If the arrow function is wrapped in a call (like flatMap or chain), skip it
-          if (
-            parent.callee &&
-            parent.callee.type === "MemberExpression" &&
-            parent.callee.property &&
-            parent.callee.property.type === "Identifier" &&
-            (parent.callee.property.name === "flatMap" ||
-             parent.callee.property.name === "chain" ||
-             parent.callee.property.name === "map")
-          ) {
-            return
-          }
-        }
+        // Only check if this is a direct argument to pipe()
+        if (!isDirectPipeArgument(node)) return
 
         // Get the function body
         const body = node.body
