@@ -41,31 +41,58 @@ yarn add fp-ts ti-fptsu
 
 ### Adding ESLint to Your Project
 
-To use the `eslint-plugin-fpts-style` plugin in your project:
+The `eslint-plugin-fpts-style` plugin is bundled with ti-fptsu. To use it:
 
 1. Install dependencies:
 
 ```bash
-pnpm add -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-fpts-style
+pnpm add -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser ti-fptsu
 ```
 
-2. Add to your `package.json`:
+2. Create `eslint.config.js`:
+
+```js
+import tsParser from "@typescript-eslint/parser"
+import fptsStyle from "ti-fptsu/eslint-plugin-fpts-style"
+
+export default [
+  {
+    files: ["**/*.ts", "**/*.js"],
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2020,
+      sourceType: "module",
+    },
+    plugins: {
+      "fpts-style": fptsStyle,
+    },
+    rules: {
+      ...fptsStyle.configs.recommended.rules,
+    },
+  },
+  {
+    files: ["**/*.test.ts"],
+    rules: {
+      "fpts-style/no-async-await": "off",
+      "fpts-style/no-unnecessary-currying": "off",
+      "fpts-style/prefer-grouped-parameters": "off",
+    },
+  },
+  {
+    ignores: ["**/node_modules/**", "**/dist/**", "**/build/**"],
+  },
+]
+```
+
+3. Add lint script to `package.json`:
 
 ```json
 {
   "scripts": {
-    "lint": "pnpm eslint"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "eslint": "^9.0.0",
-    "eslint-plugin-fpts-style": "^3.1.0"
+    "lint": "eslint ."
   }
 }
 ```
-
-3. Configure ESLint (see eslint-plugin-fpts-style documentation for configuration examples)
 
 ## Usage
 
