@@ -1267,10 +1267,10 @@ __metadata:
 
 "eslint-plugin-fpts-style@file:./eslint-plugin-fpts-style::locator=ti-fptsu%40workspace%3A.":
   version: 1.0.0
-  resolution: "eslint-plugin-fpts-style@file:./eslint-plugin-fpts-style#./eslint-plugin-fpts-style::hash=b60de0&locator=ti-fptsu%40workspace%3A."
+  resolution: "eslint-plugin-fpts-style@file:./eslint-plugin-fpts-style#./eslint-plugin-fpts-style::hash=ee8e8e&locator=ti-fptsu%40workspace%3A."
   peerDependencies:
     eslint: ">=7.0.0"
-  checksum: 10c0/33643c3f6b3254196f03eb23ecf3b27acb412a51c5b0df7ee4c6df78c395c96d4430cad08dfe16c2ac2ea61406a91a3c26718b235a3c44b69d2ea101477397de
+  checksum: 10c0/a49d4380b7aee83c38a0503f16fa3b11651ebfcda8d0b66f6022b499eeac94d9c8141b4b42a6dd78d2a82d715f890dcabe5a26f421ba933e14fa5f279c551c6e
   languageName: node
   linkType: hard
 
