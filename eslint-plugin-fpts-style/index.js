@@ -19,6 +19,7 @@ module.exports = {
     "require-flatmap-for-task-returns": require("./rules/require-flatmap-for-task-returns"),
     "no-unnecessary-thunk-in-io-of": require("./rules/no-unnecessary-thunk-in-io-of"),
     "no-do-notation": require("./rules/no-do-notation"),
+    "no-apply-par": require("./rules/no-apply-par"),
   },
   configs: {
     recommended: {
@@ -42,6 +43,7 @@ module.exports = {
         "fpts-style/require-flatmap-for-task-returns": "error",
         "fpts-style/no-unnecessary-thunk-in-io-of": "error",
         "fpts-style/no-do-notation": "error",
+        "fpts-style/no-apply-par": "error",
       },
     },
   },
